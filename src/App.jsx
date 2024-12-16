@@ -2,17 +2,26 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Title from "./components/Title";
 import SaveBtn from "./components/SaveBtn";
-import { ContentState, convertToRaw, EditorState, convertFromRaw } from "draft-js";
+import {
+  ContentState,
+  convertToRaw,
+  EditorState,
+  convertFromRaw,
+} from "draft-js";
 import DraftEditor from "./components/DraftEditor";
 
 function App() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   useEffect(() => {
-    const savedContent = localStorage.getItem("editorContent");
-    if (savedContent) {
-      const contentState = convertFromRaw(JSON.parse(savedContent));
-      setEditorState(EditorState.createWithContent(contentState));
+    try {
+      const savedContent = localStorage.getItem("editorContent");
+      if (savedContent) {
+        const contentState = convertFromRaw(JSON.parse(savedContent));
+        setEditorState(EditorState.createWithContent(contentState));
+      }
+    } catch (error) {
+      console.error("Failed to load editor content:", error);
     }
   }, []);
 

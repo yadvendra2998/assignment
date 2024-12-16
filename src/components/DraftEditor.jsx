@@ -23,12 +23,12 @@ const DraftEditor = ({ editorState, handleChange }) => {
   };
 
   const handleBeforeInput = (chars) => {
-    console.log("chars",chars)
+    console.log("chars", chars);
     const currentContent = editorState.getCurrentContent();
     const selection = editorState.getSelection();
     const currentBlock = currentContent.getBlockForKey(selection.getStartKey());
     const blockText = currentBlock.getText();
-  
+
     if (chars === " ") {
       if (blockText.startsWith("#")) {
         // Remove `#` and apply heading style
@@ -52,9 +52,9 @@ const DraftEditor = ({ editorState, handleChange }) => {
         handleChange(headingState);
         return "handled";
       }
-  
+
       if (blockText.startsWith("*") && !blockText.startsWith("**")) {
-        console.log("chars",chars)
+        console.log("chars", chars);
         // Remove `*` and apply bold style
         const updatedContent = Modifier.replaceText(
           currentContent,
@@ -73,9 +73,9 @@ const DraftEditor = ({ editorState, handleChange }) => {
         handleChange(boldState);
         return "handled";
       }
-  
+
       if (blockText.startsWith("**") && !blockText.startsWith("***")) {
-        console.log("chars",chars)
+        console.log("chars", chars);
         // Remove `**` and apply red style
         const updatedContent = Modifier.replaceText(
           currentContent,
@@ -94,9 +94,9 @@ const DraftEditor = ({ editorState, handleChange }) => {
         handleChange(redState);
         return "handled";
       }
-  
+
       if (blockText.startsWith("***")) {
-        console.log("chars",chars)
+        console.log("chars", chars);
         // Replace '***' and apply underline style
         const updatedContent = Modifier.replaceText(
           currentContent,
@@ -106,33 +106,34 @@ const DraftEditor = ({ editorState, handleChange }) => {
           }),
           blockText.substring(3).trim() // Remove '***' and trim
         );
-  
+
         // Create a new editor state with updated content
         const newEditorState = EditorState.push(
           editorState,
           updatedContent,
           "remove-range"
         );
-  
+
         // Apply UNDERLINE style from the start of the block
         const underlineSelection = newEditorState.getSelection().merge({
           anchorOffset: 0,
-          focusOffset: updatedContent.getBlockForKey(selection.getStartKey()).getText().length, // Select remaining text
+          focusOffset: updatedContent
+            .getBlockForKey(selection.getStartKey())
+            .getText().length, // Select remaining text
         });
-  
+
         const underlineState = RichUtils.toggleInlineStyle(
           EditorState.forceSelection(newEditorState, underlineSelection),
           "UNDERLINE"
         );
-  
+
         handleChange(underlineState);
         return "handled";
       }
     }
-  
+
     return "not-handled";
   };
-  
 
   const handleReturn = (e) => {
     const currentContent = editorState.getCurrentContent();
@@ -140,7 +141,7 @@ const DraftEditor = ({ editorState, handleChange }) => {
 
     // Step 1: Split the current block into two blocks
     const newContent = Modifier.splitBlock(currentContent, selection);
-    
+
     // Step 2: Push the new content state after splitting the block
     let newEditorState = EditorState.push(
       editorState,
