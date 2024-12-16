@@ -1,0 +1,87 @@
+.editor-container {
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.title h1 {
+  text-align: center;
+}
+
+.editor {
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-height: 200px;
+  margin-top: 20px;
+}
+
+.save-button {
+  /* text-align: center;
+  color: #000;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 1em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 4px 4px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none; */
+  border: 2px solid;
+  box-shadow: 1px 1px 0px 0px, #000 4px 4px 0 0,2px 2px 0px 0px,4px 4px 0px 0px;
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 5px 18px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+
+.save-button:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+/* CSS */
+.button-74 {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
